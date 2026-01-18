@@ -1,7 +1,7 @@
 # 🍴 Min Madplan
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
+[![version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
 [![maintainer](https://img.shields.io/badge/maintainer-Supersej-green.svg)](https://github.com/supersej)
 
 **Min Madplan** er en custom integration til Home Assistant, der henter din ugentlige madplan fra [madplan.drk.one](https://madplan.drk.one) via dennes API og viser den pænt på dit dashboard.
@@ -52,7 +52,8 @@ Når integrationen er installeret og Home Assistant er genstartet:
 1.  Gå til **Indstillinger** > **Enheder og tjenester**.
 2.  Klik på **+ Tilføj Integration** nederst til højre.
 3.  Søg efter **Min Madplan**.
-4.  Indtast din **API URL** og **API Nøgle**.
+4.  Indtast din **API Nøgle**.
+5.  Indtast Api Url: **https://yqwrvwjapllfqefejyhr.supabase.co/functions/v1/meal-api**
 
 > **Note:** Integrationen sørger selv for at sætte `/schedule` bag på din URL, hvis det mangler.
 
