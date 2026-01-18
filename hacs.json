@@ -1,0 +1,8 @@
+{
+  "name": "Min Madplan",
+  "content_in_root": true,
+  "zip_release": false,
+  "render_readme": true,
+  "country": "DK",
+  "homeassistant": "2024.1.0"
+}

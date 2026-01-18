@@ -1,0 +1,10 @@
+{
+  "domain": "min_madplan",
+  "name": "Min Madplan",
+  "version": "1.0.0",
+  "documentation": "https://github.com/supersej/hass-madplan",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": [],
+  "config_flow": true
+}
