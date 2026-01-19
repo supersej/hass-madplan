@@ -1,7 +1,7 @@
 # 🍴 Min Madplan
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
+[![version](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
 [![maintainer](https://img.shields.io/badge/maintainer-Supersej-green.svg)](https://github.com/supersej)
 
 **Min Madplan** er en custom integration til Home Assistant, der henter din ugentlige madplan fra [madplan.drk.one](https://madplan.drk.one) via dennes API og viser den pænt på dit dashboard.

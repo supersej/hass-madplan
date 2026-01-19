@@ -1,8 +1,9 @@
 import voluptuous as vol
 from homeassistant import config_entries
 
-# Skal matche mappenavnet præcist
 DOMAIN = "min_madplan"
+# Indtast din faste URL her
+CONF_API_URL = "https://yqwrvwjapllfqefejyhr.supabase.co/functions/v1/meal-api/schedule"
 
 class MinMadplanConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Konfigurationsflow for Min Madplan."""
@@ -12,17 +13,18 @@ class MinMadplanConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors = {}
 
         if user_input is not None:
-            if not user_input["api_url"].startswith("http"):
-                errors["base"] = "invalid_url"
-            else:
-                return self.async_create_entry(
-                    title="Madplan API", 
-                    data=user_input
-                )
+            # Her injicerer vi den hardcodede URL ind i konfigurationen,
+            # så den bliver gemt sammen med API-nøglen.
+            user_input["api_url"] = CONF_API_URL
 
+            return self.async_create_entry(
+                title="Madplan API", 
+                data=user_input
+            )
+
+        # Schema viser nu kun api_key feltet
         schema = vol.Schema({
             vol.Required("api_key"): str,
-            vol.Required("api_url", default="https://din-api-url.dk"): str,
         })
 
         return self.async_show_form(
