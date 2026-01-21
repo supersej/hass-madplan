@@ -1,7 +1,7 @@
 import voluptuous as vol
 from homeassistant import config_entries
 
-DOMAIN = "min_madplan"
+DOMAIN = "madplan"
 # Indtast din faste URL her
 CONF_API_URL = "https://yqwrvwjapllfqefejyhr.supabase.co/functions/v1/meal-api/schedule"
 

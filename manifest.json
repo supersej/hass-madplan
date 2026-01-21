@@ -1,7 +1,7 @@
 {
-  "domain": "min_madplan",
-  "name": "Min Madplan",
-  "version": "1.0.2",
+  "domain": "madplan",
+  "name": "Madplan",
+  "version": "1.0.3",
   "documentation": "https://github.com/supersej/hass-madplan",
   "dependencies": [],
   "codeowners": [],

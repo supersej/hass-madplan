@@ -1,1 +1,1 @@
-DOMAIN = "hass-madplan"
+DOMAIN = "madplan"

@@ -2,7 +2,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
 
 # Her definerer vi domænet ét sted
-DOMAIN = "min_madplan"
+DOMAIN = "madplan"
 PLATFORMS = ["sensor"]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

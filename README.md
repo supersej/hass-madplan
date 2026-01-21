@@ -1,10 +1,10 @@
-# 🍴 Min Madplan
+# 🍴 Madplan
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![version](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
+[![version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
 [![maintainer](https://img.shields.io/badge/maintainer-Supersej-green.svg)](https://github.com/supersej)
 
-**Min Madplan** er en custom integration til Home Assistant, der henter din ugentlige madplan fra [madplan.drk.one](https://madplan.drk.one) via dennes API og viser den pænt på dit dashboard.
+**Madplan** er en custom integration til Home Assistant, der henter din madplan fra [madplan.drk.one](https://madplan.drk.one) via dennes API og viser den pænt på dit dashboard.
 
 Integrationen håndterer automatisk login via API-nøgle og formaterer dataen, så den er let at bruge i Lovelace (dashboards).
 
@@ -12,7 +12,6 @@ Integrationen håndterer automatisk login via API-nøgle og formaterer dataen, s
 
 * 🚀 **Nem opsætning:** Konfigureres direkte via Home Assistants brugerflade (UI).
 * 🔐 **Sikkerhed:** Understøtter API Key authentication (`X-Api-Key`).
-* 📅 **Smart URL:** Håndterer selv endpoints (du behøver ikke skrive `/schedule`).
 * 🧠 **Intelligent Sensor:** Viser dagens ret som status og gemmer hele ugeplanen som attributter.
 * 📉 **Effektiv:** Opdaterer kun én gang i timen for at spare ressourcer.
 
@@ -41,9 +40,11 @@ Integrationen håndterer automatisk login via API-nøgle og formaterer dataen, s
 1. Når du er logget ind på [madplan.drk.one](https://madplan.drk.one) skal du trykke på tandhjulet i toppen
 2. Klikke på fanen "konto"
 3. Klikke på "advanceret indstillinger"
-4. **Valgfrit:** Vælg om api skal have skriveadgang eller eller ej.
+4. **Valgfrit:** Vælg om api skal have skriveadgang eller ej.
+   * Der er endnu ikke indbygget funktionalitet til at sende data tilbage til madplan.drk.one
+   * **Skrivebeskyttet** er derfor anbefalet
 5. Tryk "Generer ny nøgle"
-6. **VIGTIGT** gem denne nøgle da den ikke vil blive vist igen
+6. **VIGTIGT** gem denne nøgle et sikkert sted da den ikke vil blive vist igen.
 
 ## ⚙️ Opsætning
 
@@ -51,19 +52,17 @@ Når integrationen er installeret og Home Assistant er genstartet:
 
 1.  Gå til **Indstillinger** > **Enheder og tjenester**.
 2.  Klik på **+ Tilføj Integration** nederst til højre.
-3.  Søg efter **Min Madplan**.
+3.  Søg efter **Madplan**.
 4.  Indtast din **API Nøgle**.
-5.  Indtast Api Url: **https://yqwrvwjapllfqefejyhr.supabase.co/functions/v1/meal-api**
 
-> **Note:** Integrationen sørger selv for at sætte `/schedule` bag på din URL, hvis det mangler.
 
 ---
 
 ## 📱 Dashboard Kort (Lovelace)
 
-Her er to måder at vise madplanen på. Du kan bruge "Markdown" kortet i Home Assistant.
+Her er et eksempel på at vise madplanen.
 
-### 📋 Tabel-visning (God til Tablet/Desktop)
+### 📋 Tabel-visning via Markdown kort
 
 Denne kode laver en pæn tabel over de kommende dage.
 

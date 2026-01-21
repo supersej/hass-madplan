@@ -16,18 +16,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
     api_key = entry.data["api_key"]
     api_url = entry.data.get("api_url")
     
-    # Vi bruger update_before_add=True så den henter data med det samme ved start
-    async_add_entities([MinMadplanSensor(api_key, api_url)], update_before_add=True)
+    # Opdateret klassenavn
+    async_add_entities([MadplanSensor(api_key, api_url)], update_before_add=True)
 
-class MinMadplanSensor(SensorEntity):
+class MadplanSensor(SensorEntity):
     def __init__(self, api_key, api_url):
         self._api_key = api_key
         self._api_url = api_url
         self._state = None
-        # Navnet på selve entiteten i HA
         self._attr_name = "Madplan"
-        # Unikt ID baseret på det nye domæne
-        self._attr_unique_id = f"min_madplan_{api_key}"
+        
+        # RETTET: Bruger nu det nye domæne præfiks
+        self._attr_unique_id = f"madplan_{api_key}"
         self._attr_icon = "mdi:food-fork-drink"
 
     @property
