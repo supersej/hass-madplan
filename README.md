@@ -3,6 +3,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![version](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
 [![maintainer](https://img.shields.io/badge/maintainer-Supersej-green.svg)](https://github.com/supersej)
+[![buy_me_a_coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/darkdk)
 
 **Madplan** er en custom integration til Home Assistant, der henter din madplan fra [madplan.drk.one](https://madplan.drk.one) via dennes API og viser den pænt på dit dashboard.
 
