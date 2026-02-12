@@ -1,4 +1,4 @@
-# 🍴 Madplan
+## Home Assistant Custom Component: 🍴 Madplan
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![version](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://github.com/supersej/hass-madplan/releases)
