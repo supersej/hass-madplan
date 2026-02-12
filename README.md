@@ -1,7 +1,7 @@
 # 🍴 Madplan
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
+[![version](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://github.com/dit-brugernavn/dit-repo)
 [![maintainer](https://img.shields.io/badge/maintainer-Supersej-green.svg)](https://github.com/supersej)
 
 **Madplan** er en custom integration til Home Assistant, der henter din madplan fra [madplan.drk.one](https://madplan.drk.one) via dennes API og viser den pænt på dit dashboard.
@@ -60,24 +60,62 @@ Når integrationen er installeret og Home Assistant er genstartet:
 
 ## 📱 Dashboard Kort (Lovelace)
 
-Her er et eksempel på at vise madplanen.
-
-### 📋 Tabel-visning via Markdown kort
-
-Denne kode laver en pæn tabel over de kommende dage.
+Vis madplan for dags dato,
+inklusiv billede af menuen såfremt dette er tilgængeligt.
 
 ```yaml
 type: markdown
-content: |
+content: >
+  {% set state = states('sensor.madplan_2') %} {% set img =
+  state_attr('sensor.madplan_2', 'image_url') %}
+
+  {% set days = ['mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag',
+  'søndag'] %} {% set months = ['januar', 'februar', 'marts', 'april', 'maj',
+  'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'] %}
+  {% set day_name = days[now().weekday()] %} {% set month_name =
+  months[now().month - 1] %} {% set date_str = day_name ~ ", " ~ now().day ~ " "
+  ~ month_name ~ " " ~ now().year %}
+
+  <div style="text-align: center;"> <span style="color:
+  var(--secondary-text-color); font-size: 0.9em;">{{ date_str }}</span> <h1
+  style="margin: 10px 0 20px 0; font-size: 2em; font-weight: bold;">{{ state
+  }}</h1> {% if img %} <img src="{{ img }}" style="width: 100%; border-radius:
+  16px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"> {% else %} <div style="padding:
+  20px; background: rgba(255,255,255,0.1); border-radius: 16px;">🍽️ Intet
+  billede</div> {% endif %} </div>
+```
+
+### 📋 Tabel-visning via Markdown kort
+
+Denne kode laver en pæn tabel over de kommende dage,
+inklusiv billede af menuen såfremt dette er tilgængeligt.
+
+
+```yaml
+type: markdown
+content: >
   ## 🍴 Madplan
-  {% set plan = state_attr('sensor.madplan', 'helo_schedule') %}
+
+  {% set plan = state_attr('sensor.madplan_2', 'helo_schedule') %}
+
 
   {% if plan %}
-  | Dato | Dagens Ret |
+
+  | Dato | Ret |
+
   | :--- | :--- |
+
   {% for item in plan -%}
-  | {{ item.dato }} | {{ item.ret }} |
+
+  | {{ item.dato }} | {% if item.image_url %}<img src="{{ item.image_url }}"
+  width="30" style="vertical-align:middle;border-radius:50%"> {% endif %}{{
+  item.ret }} |
+
   {% endfor %}
+
   {% else %}
-  *Ingen madplan data fundet...*
+
+  *Ingen madplan fundet...*
+
   {% endif %}
+```

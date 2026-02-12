@@ -16,18 +16,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
     api_key = entry.data["api_key"]
     api_url = entry.data.get("api_url")
     
-    # Opdateret klassenavn
-    async_add_entities([MadplanSensor(api_key, api_url)], update_before_add=True)
+    async_add_entities([MinMadplanSensor(api_key, api_url)], update_before_add=True)
 
-class MadplanSensor(SensorEntity):
+class MinMadplanSensor(SensorEntity):
     def __init__(self, api_key, api_url):
         self._api_key = api_key
         self._api_url = api_url
         self._state = None
         self._attr_name = "Madplan"
-        
-        # RETTET: Bruger nu det nye domæne præfiks
-        self._attr_unique_id = f"madplan_{api_key}"
+        self._attr_unique_id = f"min_madplan_{api_key}"
         self._attr_icon = "mdi:food-fork-drink"
 
     @property
@@ -40,16 +37,12 @@ class MadplanSensor(SensorEntity):
         if not self._api_url:
             return
 
-        # --- NY LOGIK START ---
-        # 1. Vi fjerner slash til sidst (hvis den findes) for at undgå dobbelt-slash
+        # Sikrer korrekt endpoint URL
         clean_url = self._api_url.rstrip("/")
-
-        # 2. Vi tjekker om '/schedule' mangler, og tilføjer det hvis nødvendigt
         if not clean_url.endswith("schedule"):
             final_url = f"{clean_url}/schedule"
         else:
             final_url = clean_url
-        # --- NY LOGIK SLUT ---
 
         headers = {
             "X-Api-Key": self._api_key,
@@ -58,7 +51,6 @@ class MadplanSensor(SensorEntity):
 
         try:
             async with aiohttp.ClientSession() as session:
-                # VIGTIGT: Brug 'final_url' her i stedet for self._api_url
                 async with session.get(final_url, headers=headers) as response:
                     if response.status == 200:
                         data = await response.json()
@@ -66,26 +58,40 @@ class MadplanSensor(SensorEntity):
                         
                         parsed_schedule = []
                         today_meal = "Ingen madplan i dag"
+                        today_image = None
                         today_str = str(date.today())
 
                         for item in schedule_list:
                             scheduled_date = item.get("scheduled_date")
                             meals_data = item.get("meals") or {}
+                            
                             meal_name = meals_data.get("name", "Ukendt ret")
+                            # Hent image_url (sætter den til None hvis den mangler)
+                            meal_image = meals_data.get("image_url")
 
                             parsed_schedule.append({
                                 "dato": scheduled_date,
-                                "ret": meal_name
+                                "ret": meal_name,
+                                "image_url": meal_image
                             })
 
                             if scheduled_date == today_str:
                                 today_meal = meal_name
+                                today_image = meal_image
 
                         self._state = today_meal
+                        
+                        # Hvis der er et billede i dag, bruger vi det som sensor-ikon
+                        if today_image:
+                            self._attr_entity_picture = today_image
+                        else:
+                            self._attr_entity_picture = None
+                            
                         self._attr_extra_state_attributes = {
                             "helo_schedule": parsed_schedule,
                             "last_update": str(date.today()),
-                            "api_endpoint_used": final_url # God til debugging
+                            "image_url": today_image, # Din specifikke property for i dag
+                            "api_endpoint_used": final_url
                         }
                     else:
                         _LOGGER.error("Fejl %s ved kald til %s", response.status, final_url)
