@@ -1,8 +1,8 @@
-# Servicevilkår for Min Madplan
+# Servicevilkår for Let Madplan
 
 **Sidst opdateret:** 17. januar 2026
 
-Ved at downloade, installere eller bruge integrationen "Min Madplan" ("Tjenesten"), accepterer du at være bundet af disse vilkår.
+Ved at downloade, installere eller bruge integrationen "Let Madplan" ("Tjenesten"), accepterer du at være bundet af disse vilkår.
 
 ## 1. Brug af Tjenesten
 Tjenesten stilles til rådighed "som den er" (as-is) til personlig brug i Home Assistant. Du må bruge Tjenesten til at hente og vise data fra understøttede API'er.

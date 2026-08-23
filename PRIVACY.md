@@ -1,8 +1,8 @@
-# Privatlivspolitik for Min Madplan
+# Privatlivspolitik for Let Madplan
 
 **Sidst opdateret:** 17. januar 2026
 
-Denne privatlivspolitik beskriver, hvordan applikationen "Min Madplan" ("Applikationen") indsamler, bruger og beskytter dine data. Applikationen er udviklet som en open-source integration til Home Assistant.
+Denne privatlivspolitik beskriver, hvordan applikationen "Let Madplan" ("Applikationen") indsamler, bruger og beskytter dine data. Applikationen er udviklet som en open-source integration til Home Assistant.
 
 ## 1. Indsamling af data
 Applikationen indsamler udelukkende de data, der er strengt nødvendige for dens funktion:

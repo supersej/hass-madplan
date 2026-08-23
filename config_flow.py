@@ -3,10 +3,10 @@ from homeassistant import config_entries
 
 DOMAIN = "madplan"
 # Indtast din faste URL her
-CONF_API_URL = "https://yqwrvwjapllfqefejyhr.supabase.co/functions/v1/meal-api/schedule"
+CONF_API_URL = "https://ezvthwexgbcljqklahhs.supabase.co/functions/v1/meal-api/schedule"
 
 class MinMadplanConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Konfigurationsflow for Min Madplan."""
+    """Konfigurationsflow for Let Madplan."""
     VERSION = 1
 
     async def async_step_user(self, user_input=None):
